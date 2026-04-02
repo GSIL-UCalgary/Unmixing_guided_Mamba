@@ -1,0 +1,237 @@
+[32m[I 260401 19:04:03 train_unmixingguided_wandb:228](B[m UTKMamba(
+      (patch_embedding): Sequential(
+        (0): Conv2d(80, 128, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+        (1): BatchNorm2d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (2): GELU(approximate='none')
+      )
+      (um_): ChannelLinearAttention(
+        (q_proj): Conv2d(131, 128, kernel_size=(1, 1), stride=(1, 1))
+        (k_proj): Conv2d(128, 128, kernel_size=(1, 1), stride=(1, 1))
+        (v_proj): Conv2d(128, 128, kernel_size=(1, 1), stride=(1, 1))
+      )
+      (cls_): SpatialLinearAttention(
+        (q_proj): Conv2d(131, 128, kernel_size=(1, 1), stride=(1, 1))
+        (k_proj): Conv2d(128, 128, kernel_size=(1, 1), stride=(1, 1))
+        (v_proj): Conv2d(128, 128, kernel_size=(1, 1), stride=(1, 1))
+      )
+      (unmix_encoder): Sequential(
+        (0): Conv2d(128, 64, kernel_size=(1, 1), stride=(1, 1))
+        (1): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (2): ReLU()
+        (3): Conv2d(64, 32, kernel_size=(1, 1), stride=(1, 1))
+        (4): BatchNorm2d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (5): ReLU()
+        (6): Conv2d(32, 23, kernel_size=(1, 1), stride=(1, 1))
+      )
+      (query_embed): Embedding(230, 80)
+      (var_head): Conv2d(23, 230, kernel_size=(1, 1), stride=(1, 1))
+      (mamba): BothMamba(
+        (softmax): Softmax(dim=0)
+        (spa_mamba): SpaMamba(
+          (mamba): AttentionSparseDeformableMambaBlock(
+            (norm2): RMSNorm()
+            (proj_in1): Linear(in_features=128, out_features=256, bias=True)
+            (proj_out): Linear(in_features=256, out_features=128, bias=True)
+            (unselectedtoken_mamba): Mamba(
+              (in_proj): Linear(in_features=128, out_features=512, bias=False)
+              (conv1d): Conv1d(256, 256, kernel_size=(4,), stride=(1,), padding=(3,), groups=256)
+              (act): SiLU()
+              (x_proj): Linear(in_features=256, out_features=40, bias=False)
+              (dt_proj): Linear(in_features=8, out_features=256, bias=True)
+              (out_proj): Linear(in_features=256, out_features=128, bias=False)
+            )
+            (mamba_blocks): ModuleList(
+              (0-22): 23 x Mamba(
+                (in_proj): Linear(in_features=128, out_features=512, bias=False)
+                (conv1d): Conv1d(256, 256, kernel_size=(4,), stride=(1,), padding=(3,), groups=256)
+                (act): SiLU()
+                (x_proj): Linear(in_features=256, out_features=40, bias=False)
+                (dt_proj): Linear(in_features=8, out_features=256, bias=True)
+                (out_proj): Linear(in_features=256, out_features=128, bias=False)
+              )
+            )
+          )
+          (proj): Sequential(
+            (0): BatchNorm2d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+            (1): GELU(approximate='none')
+          )
+        )
+        (spe_mamba): SpeMamba(
+          (mamba): Mamba(
+            (in_proj): Linear(in_features=32, out_features=128, bias=False)
+            (conv1d): Conv1d(64, 64, kernel_size=(4,), stride=(1,), padding=(3,), groups=64)
+            (act): SiLU()
+            (x_proj): Linear(in_features=64, out_features=34, bias=False)
+            (dt_proj): Linear(in_features=2, out_features=64, bias=True)
+            (out_proj): Linear(in_features=64, out_features=32, bias=False)
+          )
+          (mamba_blocks): ModuleList(
+            (0-22): 23 x Mamba(
+              (in_proj): Linear(in_features=32, out_features=128, bias=False)
+              (conv1d): Conv1d(64, 64, kernel_size=(4,), stride=(1,), padding=(3,), groups=64)
+              (act): SiLU()
+              (x_proj): Linear(in_features=64, out_features=34, bias=False)
+              (dt_proj): Linear(in_features=2, out_features=64, bias=True)
+              (out_proj): Linear(in_features=64, out_features=32, bias=False)
+            )
+          )
+          (unselected_mamba): Mamba(
+            (in_proj): Linear(in_features=32, out_features=128, bias=False)
+            (conv1d): Conv1d(64, 64, kernel_size=(4,), stride=(1,), padding=(3,), groups=64)
+            (act): SiLU()
+            (x_proj): Linear(in_features=64, out_features=34, bias=False)
+            (dt_proj): Linear(in_features=2, out_features=64, bias=True)
+            (out_proj): Linear(in_features=64, out_features=32, bias=False)
+          )
+          (proj): Sequential(
+            (0): BatchNorm2d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+            (1): GELU(approximate='none')
+          )
+        )
+        (conv_x11): Conv2d(128, 128, kernel_size=(1, 1), stride=(1, 1))
+      )
+      (conv): Sequential(
+        (0): Conv2d(23, 23, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+        (1): BatchNorm2d(23, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (2): ReLU()
+      )
+      (fc): Conv2d(151, 10, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    )
+[32m[I 260401 19:04:03 train_unmixingguided_wandb:284](B[m Adam (
+    Parameter Group 0
+        amsgrad: False
+        betas: (0.9, 0.999)
+        capturable: False
+        differentiable: False
+        eps: 1e-08
+        foreach: None
+        fused: None
+        initial_lr: 0.001
+        lr: 0.001
+        maximize: False
+        weight_decay: 0.0
+
+    Parameter Group 1
+        amsgrad: False
+        betas: (0.9, 0.999)
+        capturable: False
+        differentiable: False
+        eps: 1e-08
+        foreach: None
+        fused: None
+        initial_lr: 0.0005
+        lr: 0.0005
+        maximize: False
+        weight_decay: 0.0
+
+    Parameter Group 2
+        amsgrad: False
+        betas: (0.9, 0.999)
+        capturable: False
+        differentiable: False
+        eps: 1e-08
+        foreach: None
+        fused: None
+        initial_lr: 0.0005
+        lr: 0.0005
+        maximize: False
+        weight_decay: 0.0
+    )
+[32m[I 260401 19:04:14 train_unmixingguided_wandb:372](B[m Iter:0 | total:2.529434 | cls:2.507049 | recon:0.003724 | abu:0.019586
+[32m[I 260401 19:04:14 train_unmixingguided_wandb:372](B[m Iter:1 | total:1.102323 | cls:1.080076 | recon:0.003418 | abu:0.019455
+[32m[I 260401 19:04:14 train_unmixingguided_wandb:372](B[m Iter:2 | total:0.841404 | cls:0.819079 | recon:0.003568 | abu:0.019559
+[32m[I 260401 19:04:15 train_unmixingguided_wandb:372](B[m Iter:3 | total:0.704760 | cls:0.682383 | recon:0.003584 | abu:0.019599
+[32m[I 260401 19:04:15 train_unmixingguided_wandb:372](B[m Iter:4 | total:0.609202 | cls:0.586886 | recon:0.003496 | abu:0.019562
+[32m[I 260401 19:04:15 train_unmixingguided_wandb:372](B[m Iter:5 | total:0.524426 | cls:0.502161 | recon:0.003371 | abu:0.019559
+Traceback (most recent call last):
+  File "/home/yimin_gsilab2/upload2github_code/unmixing_guided_Mamba/train_unmixingguided_wandb.py", line 345, in <module>
+    recon_linear, output_cls, pred_aban, endm_get, _, _ = net(x.to(device),abu_teacher=abu_teacher,token_beta=token_beta)
+  File "/home/yimin_gsilab2/miniconda3/envs/yimin_gsilab/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1511, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/yimin_gsilab2/miniconda3/envs/yimin_gsilab/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1520, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/yimin_gsilab2/upload2github_code/unmixing_guided_Mamba/model/Unmixing_guided.py", line 770, in forward
+    feature_cls = self.mamba(cls_feat, per_cluster_num1[0], abu_for_token, largest=True)
+  File "/home/yimin_gsilab2/miniconda3/envs/yimin_gsilab/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1511, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/yimin_gsilab2/miniconda3/envs/yimin_gsilab/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1520, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/yimin_gsilab2/upload2github_code/unmixing_guided_Mamba/model/Unmixing_guided.py", line 426, in forward
+    spe_x = self.spe_mamba(x, per_cluster, cluster_map, largest)
+  File "/home/yimin_gsilab2/miniconda3/envs/yimin_gsilab/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1511, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/yimin_gsilab2/miniconda3/envs/yimin_gsilab/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1520, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/yimin_gsilab2/upload2github_code/unmixing_guided_Mamba/model/Unmixing_guided.py", line 296, in forward
+    x_processed.extend(
+  File "/home/yimin_gsilab2/upload2github_code/unmixing_guided_Mamba/model/Unmixing_guided.py", line 297, in <genexpr>
+    self.mamba_blocks[i](batched_index_select(x_pad.reshape(B, -1, C_pad), 1,
+  File "/home/yimin_gsilab2/miniconda3/envs/yimin_gsilab/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1511, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/yimin_gsilab2/miniconda3/envs/yimin_gsilab/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1520, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/yimin_gsilab2/miniconda3/envs/yimin_gsilab/lib/python3.10/site-packages/mamba_ssm/modules/mamba_simple.py", line 186, in forward
+    B = rearrange(B, "(b l) dstate -> b dstate l", l=seqlen).contiguous()
+  File "/home/yimin_gsilab2/miniconda3/envs/yimin_gsilab/lib/python3.10/site-packages/einops/einops.py", line 616, in rearrange
+    return reduce(tensor, pattern, reduction="rearrange", **axes_lengths)
+  File "/home/yimin_gsilab2/miniconda3/envs/yimin_gsilab/lib/python3.10/site-packages/einops/einops.py", line 540, in reduce
+    return _apply_recipe(
+  File "/home/yimin_gsilab2/miniconda3/envs/yimin_gsilab/lib/python3.10/site-packages/einops/einops.py", line 243, in _apply_recipe
+    tensor = backend.reshape(tensor, init_shapes)
+  File "/home/yimin_gsilab2/miniconda3/envs/yimin_gsilab/lib/python3.10/site-packages/einops/_backends.py", line 96, in reshape
+    return x.reshape(shape)
+  File "/home/yimin_gsilab2/miniconda3/envs/yimin_gsilab/lib/python3.10/site-packages/torch/fx/traceback.py", line 68, in format_stack
+    return traceback.format_list(traceback.extract_stack()[:-1])
+  File "/home/yimin_gsilab2/miniconda3/envs/yimin_gsilab/lib/python3.10/traceback.py", line 227, in extract_stack
+    stack = StackSummary.extract(walk_stack(f), limit=limit)
+  File "/home/yimin_gsilab2/miniconda3/envs/yimin_gsilab/lib/python3.10/traceback.py", line 383, in extract
+    f.line
+  File "/home/yimin_gsilab2/miniconda3/envs/yimin_gsilab/lib/python3.10/traceback.py", line 307, in line
+    return self._line.strip()
+KeyboardInterrupt
+Traceback (most recent call last):
+  File "/home/yimin_gsilab2/upload2github_code/unmixing_guided_Mamba/train_unmixingguided_wandb.py", line 345, in <module>
+    recon_linear, output_cls, pred_aban, endm_get, _, _ = net(x.to(device),abu_teacher=abu_teacher,token_beta=token_beta)
+  File "/home/yimin_gsilab2/miniconda3/envs/yimin_gsilab/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1511, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/yimin_gsilab2/miniconda3/envs/yimin_gsilab/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1520, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/yimin_gsilab2/upload2github_code/unmixing_guided_Mamba/model/Unmixing_guided.py", line 770, in forward
+    feature_cls = self.mamba(cls_feat, per_cluster_num1[0], abu_for_token, largest=True)
+  File "/home/yimin_gsilab2/miniconda3/envs/yimin_gsilab/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1511, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/yimin_gsilab2/miniconda3/envs/yimin_gsilab/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1520, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/yimin_gsilab2/upload2github_code/unmixing_guided_Mamba/model/Unmixing_guided.py", line 426, in forward
+    spe_x = self.spe_mamba(x, per_cluster, cluster_map, largest)
+  File "/home/yimin_gsilab2/miniconda3/envs/yimin_gsilab/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1511, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/yimin_gsilab2/miniconda3/envs/yimin_gsilab/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1520, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/yimin_gsilab2/upload2github_code/unmixing_guided_Mamba/model/Unmixing_guided.py", line 296, in forward
+    x_processed.extend(
+  File "/home/yimin_gsilab2/upload2github_code/unmixing_guided_Mamba/model/Unmixing_guided.py", line 297, in <genexpr>
+    self.mamba_blocks[i](batched_index_select(x_pad.reshape(B, -1, C_pad), 1,
+  File "/home/yimin_gsilab2/miniconda3/envs/yimin_gsilab/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1511, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/yimin_gsilab2/miniconda3/envs/yimin_gsilab/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1520, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/yimin_gsilab2/miniconda3/envs/yimin_gsilab/lib/python3.10/site-packages/mamba_ssm/modules/mamba_simple.py", line 186, in forward
+    B = rearrange(B, "(b l) dstate -> b dstate l", l=seqlen).contiguous()
+  File "/home/yimin_gsilab2/miniconda3/envs/yimin_gsilab/lib/python3.10/site-packages/einops/einops.py", line 616, in rearrange
+    return reduce(tensor, pattern, reduction="rearrange", **axes_lengths)
+  File "/home/yimin_gsilab2/miniconda3/envs/yimin_gsilab/lib/python3.10/site-packages/einops/einops.py", line 540, in reduce
+    return _apply_recipe(
+  File "/home/yimin_gsilab2/miniconda3/envs/yimin_gsilab/lib/python3.10/site-packages/einops/einops.py", line 243, in _apply_recipe
+    tensor = backend.reshape(tensor, init_shapes)
+  File "/home/yimin_gsilab2/miniconda3/envs/yimin_gsilab/lib/python3.10/site-packages/einops/_backends.py", line 96, in reshape
+    return x.reshape(shape)
+  File "/home/yimin_gsilab2/miniconda3/envs/yimin_gsilab/lib/python3.10/site-packages/torch/fx/traceback.py", line 68, in format_stack
+    return traceback.format_list(traceback.extract_stack()[:-1])
+  File "/home/yimin_gsilab2/miniconda3/envs/yimin_gsilab/lib/python3.10/traceback.py", line 227, in extract_stack
+    stack = StackSummary.extract(walk_stack(f), limit=limit)
+  File "/home/yimin_gsilab2/miniconda3/envs/yimin_gsilab/lib/python3.10/traceback.py", line 383, in extract
+    f.line
+  File "/home/yimin_gsilab2/miniconda3/envs/yimin_gsilab/lib/python3.10/traceback.py", line 307, in line
+    return self._line.strip()
+KeyboardInterrupt

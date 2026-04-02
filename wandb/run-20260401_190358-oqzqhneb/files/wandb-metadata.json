@@ -1,0 +1,36 @@
+{
+  "os": "Linux-6.17.0-19-generic-x86_64-with-glibc2.39",
+  "python": "CPython 3.10.14",
+  "startedAt": "2026-04-02T01:03:58.815281Z",
+  "program": "/home/yimin_gsilab2/upload2github_code/unmixing_guided_Mamba/train_unmixingguided_wandb.py",
+  "codePath": "train_unmixingguided_wandb.py",
+  "codePathLocal": "train_unmixingguided_wandb.py",
+  "email": "yimin.zhu530@gmail.com",
+  "root": "/home/yimin_gsilab2/upload2github_code/unmixing_guided_Mamba",
+  "host": "gsilab2-MS-7E51",
+  "executable": "/home/yimin_gsilab2/miniconda3/envs/yimin_gsilab/bin/python",
+  "cpu_count": 16,
+  "cpu_count_logical": 32,
+  "gpu": "NVIDIA RTX A6000",
+  "gpu_count": 1,
+  "disk": {
+    "/": {
+      "total": "7936183619584",
+      "used": "292466790400"
+    }
+  },
+  "memory": {
+    "total": "132475789312"
+  },
+  "gpu_nvidia": [
+    {
+      "name": "NVIDIA RTX A6000",
+      "memoryTotal": "51527024640",
+      "cudaCores": 10752,
+      "architecture": "Ampere",
+      "uuid": "GPU-fdaf5674-fa9f-6c91-aa23-37fab35b2774"
+    }
+  ],
+  "cudaVersion": "13.1",
+  "writerId": "zqtf5op9vyode2mpit462ejdt5qexi1q"
+}
