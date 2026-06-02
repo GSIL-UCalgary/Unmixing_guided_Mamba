@@ -1,1 +1,0 @@
-{"_timestamp":1.7750918559156547e+09,"epoch":6,"_step":5,"train/lr_main":0.001,"train/lr_query":0.0005,"_runtime":15,"train/total_loss":0.5244259834289551,"train/cls_loss":0.5021608471870422,"train/recon_loss":0.0033711192663758993,"_wandb":{"runtime":15},"train/abu_loss":0.019559111446142197}
